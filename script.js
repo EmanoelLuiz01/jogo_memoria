@@ -1,38 +1,7 @@
-const heroes = [
-  "https://img.icons8.com/color/96/superman.png",
-  "https://img.icons8.com/color/96/batman.png",
-  "https://img.icons8.com/color/96/spiderman.png",
-  "https://img.icons8.com/color/96/iron-man.png",
-  "https://img.icons8.com/color/96/thor.png",
-  "https://img.icons8.com/color/96/hulk.png",
-  "https://img.icons8.com/color/96/captain-america.png",
-  "https://img.icons8.com/color/96/wonder-woman.png",
-  "https://img.icons8.com/color/96/flash.png",
-  "https://img.icons8.com/color/96/green-lantern.png",
-  "https://img.icons8.com/color/96/deadpool.png",
-  "https://img.icons8.com/color/96/black-panther.png",
-  "https://img.icons8.com/color/96/doctor-strange.png",
-  "https://img.icons8.com/color/96/aquaman.png",
-  "https://img.icons8.com/color/96/joker.png",
-  "https://img.icons8.com/color/96/harley-quinn.png",
-  "https://img.icons8.com/color/96/wolverine.png",
-  "https://img.icons8.com/color/96/loki.png",
-  "https://img.icons8.com/color/96/vision.png",
-  "https://img.icons8.com/color/96/scarlet-witch.png",
-  "https://img.icons8.com/color/96/groot.png",
-  "https://img.icons8.com/color/96/rocket.png",
-  "https://img.icons8.com/color/96/star-lord.png",
-  "https://img.icons8.com/color/96/drax.png",
-  "https://img.icons8.com/color/96/gamora.png",
-  "https://img.icons8.com/color/96/magneto.png",
-  "https://img.icons8.com/color/96/professor-x.png",
-  "https://img.icons8.com/color/96/nightwing.png",
-  "https://img.icons8.com/color/96/robin.png",
-  "https://img.icons8.com/color/96/cyclops.png",
-  "https://img.icons8.com/color/96/storm.png",
-  "https://img.icons8.com/color/96/ant-man.png"
+const alphabet = [
+  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
+  "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
 ];
-
 let cards = [];
 let firstCard = null;
 let secondCard = null;
