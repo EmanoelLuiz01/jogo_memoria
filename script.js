@@ -1,37 +1,3 @@
-const heroes = [
-"https://img.icons8.com/color/96/superman.png",
-"https://img.icons8.com/color/96/batman.png",
-"https://img.icons8.com/color/96/spiderman.png",
-"https://img.icons8.com/color/96/iron-man.png",
-"https://img.icons8.com/color/96/thor.png",
-"https://img.icons8.com/color/96/hulk.png",
-"https://img.icons8.com/color/96/captain-america.png",
-"https://img.icons8.com/color/96/wonder-woman.png",
-"https://img.icons8.com/color/96/flash.png",
-"https://img.icons8.com/color/96/green-lantern.png",
-"https://img.icons8.com/color/96/deadpool.png",
-"https://img.icons8.com/color/96/black-panther.png",
-"https://img.icons8.com/color/96/doctor-strange.png",
-"https://img.icons8.com/color/96/aquaman.png",
-"https://img.icons8.com/color/96/joker.png",
-"https://img.icons8.com/color/96/harley-quinn.png",
-"https://img.icons8.com/color/96/wolverine.png",
-"https://img.icons8.com/color/96/loki.png",
-"https://img.icons8.com/color/96/vision.png",
-"https://img.icons8.com/color/96/scarlet-witch.png",
-"https://img.icons8.com/color/96/groot.png",
-"https://img.icons8.com/color/96/rocket.png",
-"https://img.icons8.com/color/96/star-lord.png",
-"https://img.icons8.com/color/96/drax.png",
-"https://img.icons8.com/color/96/gamora.png",
-"https://img.icons8.com/color/96/magneto.png",
-"https://img.icons8.com/color/96/professor-x.png",
-"https://img.icons8.com/color/96/nightwing.png",
-"https://img.icons8.com/color/96/robin.png",
-"https://img.icons8.com/color/96/cyclops.png",
-"https://img.icons8.com/color/96/storm.png",
-"https://img.icons8.com/color/96/ant-man.png"
-];
 let cards = [];
 let firstCard = null;
 let secondCard = null;
@@ -41,6 +7,7 @@ let errors = 0;
 let hits = 0;
 let time = 0;
 let timerInterval;
+let totalCards = 0;
 
 const board = document.getElementById("board");
 
@@ -49,10 +16,11 @@ function showLevels() {
   document.getElementById("levels").classList.remove("hidden");
 }
 
-function startGame(totalCards) {
+function startGame(total) {
   document.getElementById("levels").classList.add("hidden");
   document.getElementById("game").classList.remove("hidden");
 
+  totalCards = total;
   resetStats();
   createCards(totalCards);
   createBoard(totalCards);
@@ -88,7 +56,7 @@ function createBoard(total) {
 function flipCard(card) {
   if (lockBoard || card.classList.contains("flipped")) return;
 
-  card.innerHTML = `<img src="${card.dataset.symbol}">`;
+  card.textContent = card.dataset.symbol;
   card.classList.add("flipped");
 
   if (!firstCard) {
@@ -100,14 +68,18 @@ function flipCard(card) {
     if (firstCard.dataset.symbol === secondCard.dataset.symbol) {
       hits++;
       updateScore();
-      resetTurn();
+      if (checkGameEnd()) {
+        endGame();
+      } else {
+        resetTurn();
+      }
     } else {
       errors++;
       updateScore();
 
       setTimeout(() => {
-        firstCard.innerHTML = "";
-        secondCard.innerHTML = "";
+        firstCard.textContent = "";
+        secondCard.textContent = "";
         firstCard.classList.remove("flipped");
         secondCard.classList.remove("flipped");
         resetTurn();
@@ -141,6 +113,18 @@ function startTimer() {
     time++;
     document.getElementById("timer").innerText = `Tempo: ${time}s`;
   }, 1000);
+}
+
+function checkGameEnd() {
+  return hits * 2 === totalCards;
+}
+
+function endGame() {
+  clearInterval(timerInterval);
+  lockBoard = true;
+  setTimeout(() => {
+    alert(`\n🎉 Parabéns! Você venceu!\n\nErros: ${errors}\nTempo: ${time}s`);
+  }, 500);
 }
 
 function goToMenu() {
